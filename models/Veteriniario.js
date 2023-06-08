@@ -1,6 +1,6 @@
-import moongose from "moongose";
+import mongoose from "mongoose";
 
-const veterinarioSchema = moongose.Schema({
+const veterinarioSchema = mongoose.Schema({
   nombre: {
     type: String,
     required: true,
@@ -34,5 +34,5 @@ const veterinarioSchema = moongose.Schema({
   },
 });
 
-const Veterinario = moongose.model("Veterinario", veterinarioSchema);
+const Veterinario = mongoose.model("Veterinario", veterinarioSchema);
 export default Veterinario;

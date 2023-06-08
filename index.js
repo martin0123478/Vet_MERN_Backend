@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 import veterinarioRoutes from "./routes/veterinarioRoutes.js";
 const app = express();
 dotenv.config();
+app.use(express.json());
 conctarDB();
-app.use("/api/veterniarios", veterinarioRoutes);
+app.use("/api/veterinarios", veterinarioRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(4000, () => {
