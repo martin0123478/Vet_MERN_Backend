@@ -1,5 +1,5 @@
 import Veterinario from "../models/Veteriniario.js";
-
+import generarJWT from "../helpers/generarJWT.js";
 const registrar = async (req, res) => {
   const { email } = req.body;
   //revisar si usarios duplicados
@@ -44,7 +44,7 @@ const autenticar = async (req, res) => {
     return res.status(403).json({ msg: error.message });
   }
   if (await usuario.comprobarPassword(password)) {
-    console.log("password correcto");
+    res.json({ token: generarJWT(usuario.id) });
   } else {
     const error = new Error("El password es incorrecto");
     return res.status(403).json({ msg: error.message });
