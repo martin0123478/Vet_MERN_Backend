@@ -1,4 +1,4 @@
-import mongoose from "moongose";
+import mongoose from "mongoose";
 
 const pacienteSchema = mongoose.Schema(
   {
@@ -14,9 +14,10 @@ const pacienteSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    fechaAlta: {
+    fecha: {
       type: Date,
       required: true,
+      default: Date.now(),
     },
     sintomas: {
       type: String,
