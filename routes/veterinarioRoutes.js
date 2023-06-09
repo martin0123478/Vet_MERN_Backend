@@ -1,4 +1,5 @@
 import express from "express";
+import chekauth from "../middleware/authMiddleware.js";
 import {
   registrar,
   perfil,
@@ -8,8 +9,8 @@ import {
 const router = express.Router();
 
 router.post("/", registrar);
-
-router.get("/perfil", perfil);
 router.get("/confirmar/:token", confirmar);
 router.post("/login", autenticar);
+
+router.get("/perfil", chekauth, perfil);
 export default router;
