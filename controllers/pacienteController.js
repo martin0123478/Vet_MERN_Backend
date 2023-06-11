@@ -15,4 +15,23 @@ const obtenerPacientes = async (req, res) => {
     .equals(req.veterinario);
   res.json(pacientes);
 };
-export { agregarPaciente, obtenerPacientes };
+
+const obtenerPaciente = async (req, res) => {
+  const { id } = req.params;
+  const paciente = await Paciente.findById(id);
+  if (paciente.veterinario._id.toString() !== req.veterinario._id.toString()) {
+    res.json({ msg: "Opcion no valida" });
+  }
+  if (paciente) {
+    res.json(paciente);
+  }
+};
+const actualizarPaciente = async (req, res) => {};
+const eliminaPaciente = async (req, res) => {};
+export {
+  agregarPaciente,
+  obtenerPacientes,
+  obtenerPaciente,
+  actualizarPaciente,
+  eliminaPaciente,
+};
