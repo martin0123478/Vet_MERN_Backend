@@ -38,7 +38,7 @@ const confirmar = async (req, res) => {
     await usuarioConfirmar.save();
     res.json({ msg: "Usuario confirmado correctamente" });
   } catch (error) {
-    console.log(error);
+    res.json({ msg: "Error en token" });
   }
 };
 const autenticar = async (req, res) => {
