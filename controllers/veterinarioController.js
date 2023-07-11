@@ -2,6 +2,7 @@ import Veterinario from "../models/Veteriniario.js";
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
 import emailRegistro from "../helpers/emailRegistro.js";
+import emailOlvidePassword from "../helpers/emailOlvidePasword.js";
 const registrar = async (req, res) => {
   const { email, nombre } = req.body;
   //revisar si usarios duplicados
@@ -26,7 +27,7 @@ const registrar = async (req, res) => {
 };
 const perfil = (req, res) => {
   const { veterinario } = req;
-  res.json({ perfil: veterinario });
+  res.json(veterinario);
 };
 
 const confirmar = async (req, res) => {
@@ -70,6 +71,12 @@ const olvidePassword = async (req, res) => {
   try {
     existeVeterinario.token = generarId();
     await existeVeterinario.save();
+    //enviar email
+    emailOlvidePassword({
+      email,
+      nombre: existeVeterinario.nombre,
+      token: existeVeterinario.token,
+    });
     res.json({ msg: "Hemos enviado un email con las instrucciones" });
   } catch (error) {
     console.log(error);
